@@ -26,6 +26,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+## create some arrays with the ranges of data above.  Use the middle value.
+age_range = [30, 40, 50, 60, 70, 80]
+alc_range = [20, 60, 100, 140]
+tob_range = [5, 15, 25, 35]
 
 ##  read in the data file  ##
 ##  columns separated by commas.  We want columns 1-5, and not the first row.
@@ -68,22 +72,49 @@ tob = [float(s.replace("-","")) for s in tob]
 
 n = len(alc)
 
+### find unique values of the arrays
+unique_ages = np.unique(age)
+unique_alc = np.unique(alc)
+#unique_alc = [float(x) for x in unique_alc]
+unique_tob = set(tob)
+
+
 ##### calculate a confidence interval?  #####
 answer = np.polyfit(alc,fraction,1)  # makes a linear fit to the data
+unique_answer = answer[0]*np.array(unique_alc) + answer[1]
+
 
 #  standard error =  s_yx * sqrt( 1/n + (x-xbar)^2/SSx)
 #  SS = sum of squares
-#  s_yx = 
+#  s_yx = hmmmm
+
+#### for each alcohol content, find the fraction data stats ###
+sigmas = []
+for entry in unique_alc:
+    tally=[]
+    for i in range(len(alc)):
+        if alc[i] == entry:
+            tally.append(fraction[i])
+        average = np.mean(tally)
+        stddev = np.std(tally)
+        median = np.median(tally)
+    print "for alc ",str(entry)
+    print average,stddev,median
+    sigmas.append(float(stddev))
+
+sigmas = np.array(sigmas)
+print type(sigmas),type(unique_answer)
+
 
 s_yx = np.sqrt((1./(n-2.0))* ( np.sum((np.array(fraction)-np.mean(fraction))**2.0) - ( (np.sum(np.array(alc)-np.mean(alc))*(np.array(fraction)-np.mean(fraction)))**2. / (np.sum((np.array(alc)-np.mean(alc))**2.) ))))
-print s_yx
+#print s_yx
 SSx = np.sum((np.array(fraction) - np.mean(fraction))**2.0)
-print fraction
-print np.mean(fraction)
-print SSx
+#print fraction
+#print np.mean(fraction)
+#print SSx
 se =  s_yx * np.sqrt(1./np.array(n) + ((np.array(fraction) - np.mean(fraction))**2.0/SSx))
-print "****"
-print se
+#print "****"
+#print se
 
 ######  PLOTTING COMMANDS  #########
 
@@ -101,10 +132,10 @@ plt.title("Esophagal cancer")
 why = answer[0]*np.array(alc) + answer[1]
 plt.plot(alc,why)
 # error lines?
-plt.plot(alc,why+se)
-plt.plot(alc,why-se)
-plt.show()
+plt.plot(unique_alc,unique_answer+sigmas/2.0)
+plt.plot(unique_alc,unique_answer-sigmas/2.0)
+#plt.show()
 # uncomment the line below to save the plot to a file
-#plt.savefig("esoph.png")
+plt.savefig("esoph.png")
 
 
