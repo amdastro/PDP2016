@@ -67,9 +67,11 @@ ncases = [float(x) for x in ncases]
 ncontrol = [float(x) for x in ncontrol]
 fraction = np.array(ncases)/np.array(ncontrol)
 
+# the "-" symbol is a pain, let's get rid of it.  replace it with a nothing.
 alc = [float(s.replace("-","")) for s in alc]
 tob = [float(s.replace("-","")) for s in tob]
 
+# count the number of entries in the arrays
 n = len(alc)
 
 ### find unique values of the arrays
@@ -80,31 +82,34 @@ unique_tob = set(tob)
 
 
 ##### calculate a confidence interval?  #####
-answer = np.polyfit(alc,fraction,1)  # makes a linear fit to the data
+# fit a line to the data using polyfit
+# the "1" at the end means Linear
+answer = np.polyfit(alc,fraction,1)
+# use the fit to create an array of Y values
+# we'll use this to plot a line later
 unique_answer = answer[0]*np.array(unique_alc) + answer[1]
 
 
-#  standard error =  s_yx * sqrt( 1/n + (x-xbar)^2/SSx)
-#  SS = sum of squares
-#  s_yx = hmmmm
-
-#### for each alcohol content, find the fraction data stats ###
+#### for each alcohol content, find the fraction data statistics ###
 sigmas = []
-for entry in unique_alc:
+for entry in unique_alc:  # loop through each unique alcohol value
     tally=[]
     for i in range(len(alc)):
         if alc[i] == entry:
+            #  keep a tally of how many of each entry there are
             tally.append(fraction[i])
+        # once we have tally, do statistics.    
         average = np.mean(tally)
         stddev = np.std(tally)
         median = np.median(tally)
     print "for alc ",str(entry)
     print average,stddev,median
-    sigmas.append(float(stddev))
+    sigmas.append(float(stddev))  # list of standard deviations
 
-sigmas = np.array(sigmas)
-print type(sigmas),type(unique_answer)
+sigmas = np.array(sigmas)  # convert to numpy array so we can do math
 
+"""
+TERRIBLENESS IGNORE THIS
 
 s_yx = np.sqrt((1./(n-2.0))* ( np.sum((np.array(fraction)-np.mean(fraction))**2.0) - ( (np.sum(np.array(alc)-np.mean(alc))*(np.array(fraction)-np.mean(fraction)))**2. / (np.sum((np.array(alc)-np.mean(alc))**2.) ))))
 #print s_yx
@@ -115,6 +120,7 @@ SSx = np.sum((np.array(fraction) - np.mean(fraction))**2.0)
 se =  s_yx * np.sqrt(1./np.array(n) + ((np.array(fraction) - np.mean(fraction))**2.0/SSx))
 #print "****"
 #print se
+"""
 
 ######  PLOTTING COMMANDS  #########
 
@@ -128,14 +134,17 @@ plt.ylabel("fraction Ncases/Ncontrol")
 bar = plt.colorbar(image)
 bar.set_label("age")
 plt.title("Esophagal cancer")
-# displays the plot
+# use the result from our fit to
 why = answer[0]*np.array(alc) + answer[1]
 plt.plot(alc,why)
-# error lines?
+plt.plot(unique_alc,unique_answer)
+# the two commands above plot the same line,  that's a good sanity check
+# now let's plot some error lines
 plt.plot(unique_alc,unique_answer+sigmas/2.0)
 plt.plot(unique_alc,unique_answer-sigmas/2.0)
-#plt.show()
+# displays the plot
+plt.show()
 # uncomment the line below to save the plot to a file
-plt.savefig("esoph.png")
+#plt.savefig("esoph.png")
 
 
