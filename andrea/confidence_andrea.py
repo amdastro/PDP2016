@@ -55,6 +55,38 @@ t_value = 2. # Look this up
 #CI = t_value*se*np.sqrt(1/n + (year -np.mean(year))**2/(n-1)/SSxx**2)
 
 
+#------------------------------
+# Ok, let's try these equations again
+# A confidence interval is given by the 
+# sum of the squares of the standard error of the mean
+# and the standard error of the slope
+
+# First I should shift my data so that 
+# it is centered about the mean: 
+
+# Then I can compute the standard deviation:
+
+# and get the standard error of the mean 
+# by dividing by the sqrt of the sample size:
+
+# Then I can get the standard error of the 
+# slope of the shifted line at the mean:
+
+# Now the error on the slope at some *other* value of x
+# Is the error on the slope times some distance from the mean:
+
+# Now we can get the standard error of 
+# an estimate of the mean at some other value of x:
+
+# If you plot this as a function of x, 
+# It should look like a curve:
+
+
+
+
+
+
+
 # Plot it
 plt.fill_between(year,f(year,A,B)+CI,f(year,A,B)-CI,color='#8258FA',alpha=0.5)
 plt.plot(year,f(year,A,B)+CI,color='#8258FA',linewidth=2,label=r'$\rm CI$')
