@@ -73,6 +73,9 @@ asstd = 126
 asreadper = np.array([0, 2, 3, 8, 15, 27, 41, 56, 70, 82, 91, 96, 98])
 asmathper = np.array([0, 1, 1, 3, 7, 13, 22, 34, 46, 60, 75, 86, 95])
 aswritper = np.array([0, 1, 3, 7, 15, 27, 41, 54, 67, 79, 89, 95, 99])
+asread = np.round(asnum*asreadper/100.)
+asmath = np.round(asnum*asmathper/100.)
+aswrit = np.round(asnum*aswritper/100.)
 
 # Mexican
 mexnum = 130026
