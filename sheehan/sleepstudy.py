@@ -70,13 +70,15 @@ def plot_conf_intervals(x,y,conf=0.95):
 	m,b,r = fit_linear_reg(x,y)
 
 	conf_int = t*std_err*np.sqrt(1./n+(linx-x_mean)**2./SSX)
-	print conf_int
+	pred_int = t*std_err*np.sqrt(1.+1./n+(linx-x_mean)**2./SSX)
 	
 
-	plt.scatter(x,y)
+	plt.scatter(x,y, color = 'k',marker ='+')
 	plt.plot(linx,m*linx+b,color ='r')	
 	plt.plot(linx,m*linx+b+conf_int,color = 'g')
 	plt.plot(linx,m*linx+b-conf_int,color = 'g')
+	plt.plot(linx,m*linx+b+pred_int,color = 'y')
+	plt.plot(linx,m*linx+b-pred_int,color = 'y')
 	plt.xlabel('Days without sleep')
 	plt.ylabel('Reaction time (ms)')
 
