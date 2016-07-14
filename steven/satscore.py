@@ -84,6 +84,9 @@ mexstd = 98
 mexreadper = np.array([0, 2, 5, 14, 30, 51, 70, 84, 93, 97, 99, 99, 99])
 mexmathper = np.array([0, 1, 4, 12, 26, 47, 66, 82, 91, 96, 99, 99, 99])
 mexwritper = np.array([0, 1, 5, 14, 33, 56, 76, 87, 94, 98, 99, 99, 99])
+mexread = np.round(mexnum*mexreadper/100.)
+mexmath = np.round(mexnum*mexmathper/100.)
+mexwrit = np.round(mexnum*mexwritper/100.)
 
 # Puerto Rican
 prnum = 30192
@@ -92,6 +95,9 @@ prstd = 105
 prreadper = np.array([0, 2, 6, 14, 28, 48, 66, 80, 90, 96, 99, 99, 99])
 prmathper = np.array([0, 2, 6, 16, 31, 50, 68, 81, 91, 96, 99, 99, 99])
 prwritper = np.array([0, 2, 6, 16, 33, 53, 71, 84, 92, 97, 99, 99, 99])
+prread = np.round(prnum*prreadper/100.)
+prmath = np.round(prnum*prmathper/100.)
+prwrit = np.round(prnum*prwritper/100.)
 
 # Latin American
 lanum = 162655
@@ -100,6 +106,9 @@ lastd = 107
 lareadper = np.array([0, 3, 6, 16, 32, 51, 68, 81, 91, 96, 99, 99, 99])
 lamathper = np.array([0, 2, 5, 14, 29, 48, 66, 80, 89, 95, 98, 99, 99])
 lawritper = np.array([0, 2, 6, 17, 35, 56, 73, 85, 92, 97, 99, 99, 99])
+laread = np.round(lanum*lareadper/100.)
+lamath = np.round(lanum*lamathper/100.)
+lawrit = np.round(lanum*lawritper/100.)
 
 # White
 whnum = 800236
@@ -108,6 +117,9 @@ whstd = 103
 whreadper = np.array([0, 1, 1, 3, 9, 21, 38, 57, 74, 87, 94, 98, 99])
 whmathper = np.array([0, 1, 1, 3, 9, 20, 36, 55, 72, 85, 94, 98, 99])
 whwritper = np.array([0, 1, 1, 4, 12, 27, 45, 63, 78, 89, 95, 98, 99])
+whread = np.round(whnum*whreadper/100.)
+whmath = np.round(whnum*whmathper/100.)
+whwrit = np.round(whnum*whwritper/100.)
 
 # Other
 otnum = 65063
@@ -116,6 +128,9 @@ otstd = 124
 otreadper = np.array([0, 3, 6, 12, 22, 37, 53, 67, 79, 89, 95, 98, 99])
 otmathper = np.array([0, 1, 3, 8, 16, 29, 44, 59, 72, 83, 92, 96, 99])
 otwritper = np.array([0, 3, 5, 11, 22, 38, 55, 69, 81, 89, 95, 98, 99])
+otread = np.round(otnum*otreadper/100.)
+otmath = np.round(otnum*otmathper/100.)
+otwrit = np.round(otnum*otwritper/100.)
 
 ###############################################################
 # Confidence intervals
