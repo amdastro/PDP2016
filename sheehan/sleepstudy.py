@@ -45,7 +45,7 @@ def sigma(x):
 def Syx(x,y):
 	#standard error of estimate = sigma(y)*sqrt(1-r^2)
 	m,b,r=fit_linear_reg(x,y)
-	return sigma(y)*np.sqrt(1-r*r)
+	return sigma(y)*np.sqrt(1.-r*r)
 
 def plot_conf_intervals(x,y,conf=0.95):
 
@@ -60,7 +60,7 @@ def plot_conf_intervals(x,y,conf=0.95):
 	
 	x_mean = np.mean(x)
 
-	t = stats.t.isf(alpha/2,n-2)
+	t = stats.t.isf(alpha/2.,n-2)
 
 
 	x_min,y_min,x_max,y_max=np.amin(x),np.amin(y),np.amax(x),np.amax(y)
@@ -69,7 +69,7 @@ def plot_conf_intervals(x,y,conf=0.95):
 	
 	m,b,r = fit_linear_reg(x,y)
 
-	conf_int = t*std_err*np.sqrt(1/n+(linx-x_mean)**2/SSX)
+	conf_int = t*std_err*np.sqrt(1./n+(linx-x_mean)**2./SSX)
 	print conf_int
 	
 
@@ -80,7 +80,7 @@ def plot_conf_intervals(x,y,conf=0.95):
 	plt.xlabel('Days without sleep')
 	plt.ylabel('Reaction time (ms)')
 
-	plt.savefig('sleep_all.pdf')
+	plt.savefig('sleepstudy.pdf')
 	plt.close()
 	
 plot_conf_intervals(x,y)
