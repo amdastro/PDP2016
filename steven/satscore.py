@@ -12,6 +12,7 @@
 ###############################################################
 import numpy as np  # Has a ton of useful operations related to storing and accessing data
 from matplotlib import pyplot as plt  # basic package used to plot data
+import np.random.normal as norm 
 
 # Range of scores
 scores = np.array([200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800])
@@ -31,6 +32,9 @@ mwritper = np.array([0, 2, 5, 12, 25, 41, 58, 72, 83, 91, 96, 98, 99])
 mread = np.round(mnum*mreadper/100.)
 mmath = np.round(mnum*mmathper/100.)
 mwrit = np.round(mnum*mwritper/100.)
+mreaddat = norm(mmean, mstd, size=mnum)
+mreaddat = mreaddat[np.where((mreaddat > 200) & (mreaddat < 800))]
+
 
 # Female
 fnum = 903719
