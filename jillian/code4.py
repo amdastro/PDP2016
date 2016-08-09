@@ -24,10 +24,11 @@ alc_range = [20, 60, 100, 140]
 tob_range = [5, 15, 25, 35]
 
 ##  read in the data file  ##
-##  columns separated by commas.  We want columns 1-5, and not the first row.
+##  columns separated by commas.  We don't want the first row.
 data = np.genfromtxt("noage_esoph.csv",delimiter=",",skip_header=1)
 
-# the result "data" is a matrix of all of the information.  Now we need to organize it a little bit.
+# the result "data" is a matrix of all of the information.
+# Now we need to organize it a little bit.
 
 alc = data[:,0]
 tob = data[:,1]
