@@ -249,7 +249,7 @@ otreadstd = 124
 otmathmean = 519
 otmathstd = 123
 otwritmean = 487
-otwritstd = 122
+otwritstd = 122 
 
 otreadper = np.array([0, 3, 6, 12, 22, 37, 53, 67, 79, 89, 95, 98, 99])
 otmathper = np.array([0, 1, 3, 8, 16, 29, 44, 59, 72, 83, 92, 96, 99])
