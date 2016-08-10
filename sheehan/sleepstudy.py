@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 
 data = np.genfromtxt('sleepstudy.dat')
-
+#test
 #Define x and y values of data as numpy arrays
 x=data[:,2]
 y=data[:,1]
