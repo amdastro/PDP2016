@@ -12,7 +12,8 @@
 ###############################################################
 import numpy as np  # Has a ton of useful operations related to storing and accessing data
 from matplotlib import pyplot as plt  # basic package used to plot data
-import np.random.normal as norm 
+import numpy.random as ran
+import scipy.stats as stats
 
 # Range of scores
 scores = np.array([200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800])
@@ -31,19 +32,22 @@ mmathstd = 124
 mwritmean = 478
 mwritstd = 117
 
+# Percentile scores
 mreadper = np.array([0, 2, 4, 10, 20, 34, 50, 65, 79, 89, 95, 98, 99])
 mmathper = np.array([0, 1, 3, 7, 14, 26, 41, 56, 70, 82, 91, 95, 99])
 mwritper = np.array([0, 2, 5, 12, 25, 41, 58, 72, 83, 91, 96, 98, 99])
 
-mread = np.round(mnum*mreadper/100.)
-mmath = np.round(mnum*mmathper/100.)
-mwrit = np.round(mnum*mwritper/100.)
+# Number of people at a particular percentile
+mread = np.round(mnum * mreadper / 100.)
+mmath = np.round(mnum * mmathper / 100.)
+mwrit = np.round(mnum * mwritper / 100.)
 
-mreaddat = norm(mreadmean, mreadstd, size=mnum)
+# Scores for those people
+mreaddat = ran.normal(mreadmean, mreadstd, size=mnum)
 mreaddat = mreaddat[np.where((mreaddat > 200) & (mreaddat < 800))]
-mmathdat = norm(mmathmean, mmathstd, size=mnum)
+mmathdat = ran.normal(mmathmean, mmathstd, size=mnum)
 mmathdat = mmathdat[np.where((mmathdat > 200) & (mmathdat < 800))]
-mwritdat = norm(mwritmean, mwritstd, size=mnum)
+mwritdat = ran.normal(mwritmean, mwritstd, size=mnum)
 mwritdat = mwritdat[np.where((mwritdat > 200) & (mwritdat < 800))]
 
 # Female
@@ -63,11 +67,11 @@ fread = np.round(fnum*freadper/100.)
 fmath = np.round(fnum*fmathper/100.)
 fwrit = np.round(fnum*fwritper/100.)
 
-freaddat = norm(freadmean, freadstd, size=fnum)
+freaddat = ran.normal(freadmean, freadstd, size=fnum)
 freaddat = freaddat[np.where((freaddat > 200) & (freaddat < 800))]
-fmathdat = norm(fmathmean, fmathstd, size=fnum)
+fmathdat = ran.normal(fmathmean, fmathstd, size=fnum)
 fmathdat = fmathdat[np.where((fmathdat > 200) & (fmathdat < 800))]
-fwritdat = norm(fwritmean, fwritstd, size=fnum)
+fwritdat = ran.normal(fwritmean, fwritstd, size=fnum)
 fwritdat = fwritdat[np.where((fwritdat > 200) & (fwritdat < 800))]
 
 # Black
@@ -87,11 +91,11 @@ blread = np.round(blnum*blreadper/100.)
 blmath = np.round(blnum*blmathper/100.)
 blwrit = np.round(blnum*blwritper/100.)
 
-blreaddat = norm(blreadmean, blreadstd, size=blnum)
+blreaddat = ran.normal(blreadmean, blreadstd, size=blnum)
 blreaddat = mreaddat[np.where((blreaddat > 200) & (blreaddat < 800))]
-blmathdat = norm(blmathmean, blmathstd, size=blnum)
+blmathdat = ran.normal(blmathmean, blmathstd, size=blnum)
 blmathdat = blmathdat[np.where((blmathdat > 200) & (blmathdat < 800))]
-blwritdat = norm(blwritmean, blwritstd, size=blnum)
+blwritdat = ran.normal(blwritmean, blwritstd, size=blnum)
 blwritdat = blwritdat[np.where((blwritdat > 200) & (blwritdat < 800))]
 
 
@@ -112,22 +116,22 @@ fread = np.round(fnum*freadper/100.)
 fmath = np.round(fnum*fmathper/100.)
 fwrit = np.round(fnum*fwritper/100.)
 
-ainreaddat = norm(ainreadmean, ainreadstd, size=ainnum)
+ainreaddat = ran.normal(ainreadmean, ainreadstd, size=ainnum)
 ainreaddat = ainreaddat[np.where((ainreaddat > 200) & (ainreaddat < 800))]
-ainmathdat = norm(ainmathmean, ainmathstd, size=ainnum)
+ainmathdat = ran.normal(ainmathmean, ainmathstd, size=ainnum)
 ainmathdat = ainmathdat[np.where((ainmathdat > 200) & (ainmathdat < 800))]
-ainwritdat = norm(ainwritmean, ainwritstd, size=ainnum)
+ainwritdat = ran.normal(ainwritmean, ainwritstd, size=ainnum)
 ainwritdat = ainwritdat[np.where((ainwritdat > 200) & (ainwritdat < 800))]
 
 
 # Asian
 asnum = 211238
-asmean = 525
-asstd = 126
-asmean = 598
-asstd = 127
-asmean = 531
-asstd = 129
+asreadmean = 525
+asreadstd = 126
+asmathmean = 598
+asmathstd = 127
+aswritmean = 531
+aswritstd = 129
 
 asreadper = np.array([0, 2, 3, 8, 15, 27, 41, 56, 70, 82, 91, 96, 98])
 asmathper = np.array([0, 1, 1, 3, 7, 13, 22, 34, 46, 60, 75, 86, 95])
@@ -137,11 +141,11 @@ asread = np.round(asnum*asreadper/100.)
 asmath = np.round(asnum*asmathper/100.)
 aswrit = np.round(asnum*aswritper/100.)
 
-asreaddat = norm(asreadmean, asreadstd, size=asnum)
+asreaddat = ran.normal(asreadmean, asreadstd, size=asnum)
 asreaddat = asreaddat[np.where((asreaddat > 200) & (asreaddat < 800))]
-asmathdat = norm(asmathmean, asmathstd, size=asnum)
+asmathdat = ran.normal(asmathmean, asmathstd, size=asnum)
 asmathdat = asmathdat[np.where((asmathdat > 200) & (asmathdat < 800))]
-aswritdat = norm(aswritmean, aswritstd, size=asnum)
+aswritdat = ran.normal(aswritmean, aswritstd, size=asnum)
 aswritdat = aswritdat[np.where((aswritdat > 200) & (aswritdat < 800))]
 
 
@@ -162,11 +166,11 @@ mexread = np.round(mexnum*mexreadper/100.)
 mexmath = np.round(mexnum*mexmathper/100.)
 mexwrit = np.round(mexnum*mexwritper/100.)
 
-mexreaddat = norm(mexreadmean, mexreadstd, size=mexnum)
+mexreaddat = ran.normal(mexreadmean, mexreadstd, size=mexnum)
 mexreaddat = mexreaddat[np.where((mexreaddat > 200) & (mexreaddat < 800))]
-mexmathdat = norm(mexmathmean, mexmathstd, size=mexnum)
+mexmathdat = ran.normal(mexmathmean, mexmathstd, size=mexnum)
 mexmathdat = mexmathdat[np.where((mexmathdat > 200) & (mexmathdat < 800))]
-mexwritdat = norm(mexwritmean, mexwritstd, size=mexnum)
+mexwritdat = ran.normal(mexwritmean, mexwritstd, size=mexnum)
 mexwritdat = mexwritdat[np.where((mexwritdat > 200) & (mexwritdat < 800))]
 
 # Puerto Rican
@@ -186,11 +190,11 @@ prread = np.round(prnum*prreadper/100.)
 prmath = np.round(prnum*prmathper/100.)
 prwrit = np.round(prnum*prwritper/100.)
 
-prreaddat = norm(prreadmean, prreadstd, size=prnum)
+prreaddat = ran.normal(prreadmean, prreadstd, size=prnum)
 prreaddat = prreaddat[np.where((prreaddat > 200) & (prreaddat < 800))]
-prmathdat = norm(prmathmean, prmathstd, size=prnum)
+prmathdat = ran.normal(prmathmean, prmathstd, size=prnum)
 prmathdat = prmathdat[np.where((prmathdat > 200) & (prmathdat < 800))]
-prwritdat = norm(prwritmean, prwritstd, size=prnum)
+prwritdat = ran.normal(prwritmean, prwritstd, size=prnum)
 prwritdat = prwritdat[np.where((prwritdat > 200) & (prwritdat < 800))]
 
 
@@ -211,11 +215,11 @@ laread = np.round(lanum*lareadper/100.)
 lamath = np.round(lanum*lamathper/100.)
 lawrit = np.round(lanum*lawritper/100.)
 
-lareaddat = norm(lareadmean, lareadstd, size=lanum)
+lareaddat = ran.normal(lareadmean, lareadstd, size=lanum)
 lareaddat = lareaddat[np.where((lareaddat > 200) & (lareaddat < 800))]
-lamathdat = norm(lamathmean, lamathstd, size=lanum)
+lamathdat = ran.normal(lamathmean, lamathstd, size=lanum)
 lamathdat = lamathdat[np.where((lamathdat > 200) & (lamathdat < 800))]
-lawritdat = norm(lawritmean, lawritstd, size=lanum)
+lawritdat = ran.normal(lawritmean, lawritstd, size=lanum)
 lawritdat = lawritdat[np.where((lawritdat > 200) & (lawritdat < 800))]
 
 # White
@@ -235,11 +239,11 @@ whread = np.round(whnum*whreadper/100.)
 whmath = np.round(whnum*whmathper/100.)
 whwrit = np.round(whnum*whwritper/100.)
 
-whreaddat = norm(whreadmean, whreadstd, size=whnum)
+whreaddat = ran.normal(whreadmean, whreadstd, size=whnum)
 whreaddat = whreaddat[np.where((whreaddat > 200) & (whreaddat < 800))]
-whmathdat = norm(whmathmean, whmathstd, size=whnum)
+whmathdat = ran.normal(whmathmean, whmathstd, size=whnum)
 whmathdat = whmathdat[np.where((whmathdat > 200) & (whmathdat < 800))]
-whwritdat = norm(whwritmean, whwritstd, size=whnum)
+whwritdat = ran.normal(whwritmean, whwritstd, size=whnum)
 whwritdat = whwritdat[np.where((whwritdat > 200) & (whwritdat < 800))]
 
 # Other
@@ -259,65 +263,85 @@ otread = np.round(otnum*otreadper/100.)
 otmath = np.round(otnum*otmathper/100.)
 otwrit = np.round(otnum*otwritper/100.)
 
-otreaddat = norm(otreadmean, otreadstd, size=otnum)
+otreaddat = ran.normal(otreadmean, otreadstd, size=otnum)
 otreaddat = otreaddat[np.where((otreaddat > 200) & (otreaddat < 800))]
-otmathdat = norm(otmathmean, otmathstd, size=otnum)
+otmathdat = ran.normal(otmathmean, otmathstd, size=otnum)
 otmathdat = otmathdat[np.where((otmathdat > 200) & (otmathdat < 800))]
-otwritdat = norm(otwritmean, otwritstd, size=otnum)
+otwritdat = ran.normal(otwritmean, otwritstd, size=otnum)
 otwritdat = otwritdat[np.where((otwritdat > 200) & (otwritdat < 800))]
-
-###############################################################
-# Confidence intervals
-###############################################################
-# We can calculate confidence intervals for each dataset according to the size, #, and std
-
-# For 95% confidence, we get z = 1.96 from a z-table
-z = 1.96
-
-# Here we just calculate the CI for three groups, asian, mexican and white
-whconf = z * whstd / np.sqrt(whnum)
-mexconf = z * mexstd / np.sqrt(mexnum)
-asconf = z * asstd / np.sqrt(asnum)
-
 
 ###############################################################
 # Now that the data is loaded, we can make plots
 ###############################################################
-# Format is plt.plot(x, y, *insert keywords*)
-# The keywords include things that can change the color, shape, etc. of the ploted data
-# Here we use a simple label to label the data and at the end use plt.legend() to make a
-# Legend and show the labels
 
-'''
-nope
-plt.plot(scores, mread, label='male')
-plt.plot(scores, fread, label='female')
-plt.plot(scores, blread, label='black')
-plt.plot(scores, ainread, label='NatAm')
-plt.plot(scores, asread, label='asian')
-plt.plot(scores, mexread, label='mexican')
-plt.plot(scores, prread, label='PR')
-plt.plot(scores, laread, label='LatAm')
-plt.plot(scores, whread, label='white')
-plt.plot(scores, otread, label='other')
-'''
+x = np.array(scores.tolist()*20)
+y = np.array((mexread/mexnum).tolist()*20)
 
-# Another plotting tool uses scatterpoints, whereas plot makes lines. The format is the same
-# We first plot the actual data
-plt.scatter(scores, whread, c='red',  label='white')
-plt.scatter(scores, mexread, c='blue', label='mexican')
-plt.scatter(scores, asread, c='green', label='asian')
+xx = np.array(scores.tolist()*20)
+yy = np.array((whread/whnum).tolist()*20)
 
-# Then we create the upper and lower confidence intervals for the data
-plt.plot(scores, whread+whconf, c='red')
-plt.plot(scores, whread-whconf, c='red')
-plt.plot(scores, mexread+mexconf, c='blue')
-plt.plot(scores, mexread-mexconf, c='blue')
-plt.plot(scores, asread+asconf, c='green')
-plt.plot(scores, asread-asconf, c='green')
+def SSx(x):
+	#sum of (x-xbar)^2
+	n = len(x)
+	return np.sum(x**2)-(np.sum(x))**2/n
 
-# We create a legend
-plt.legend(loc=4, scatterpoints=1)
+def SSxy(x,y):
+	#sum of (x-xbar)(y-ybar)
+	n = len(x)
+	return np.sum(x*y) - np.sum(x)*np.sum(y)/n
 
-# Now we use this command to plot the data
+def fit_linear_reg(x,y):
+	#fits linear regression and returns slope and intercept
+	#m,b = np.polyfit(x,y,1)
+	
+	m = SSxy(x,y)/SSx(x)
+	b = np.mean(y) - m*np.mean(x)
+	r = SSxy(x,y)/np.sqrt(SSx(x)*SSx(y))
+
+	# returns slope and intercept and r
+	return m,b,r
+
+def sigma(x):
+	#standard deviation x
+	n = len(x)
+	return np.sqrt(SSx(x)/n)
+
+def Syx(x,y):
+	#standard error of estimate = sigma(y)*sqrt(1-r^2)
+	m,b,r=fit_linear_reg(x,y)
+	return sigma(y)*np.sqrt(1.-r*r)
+
+def plot_conf_intervals(x,y,color,conf=0.95):
+	#plots scatter data and confidence intervals
+
+	n = len(y)	#total number of points
+	alpha = 1-conf	#alpha = 1-conf
+	df = n-2	#degrees of freedom
+
+	std_err = Syx(x,y)
+	SSX = SSx(x)
+	x_mean = np.mean(x)
+	t = stats.t.isf(alpha/2.,n-2)	#students t value for a two tailed test
+
+	x_min,y_min,x_max,y_max=np.amin(x),np.amin(y),np.amax(x),np.amax(y)	#for graphing boundaries maybe
+	linx = np.linspace(x_min,x_max,50)					#array of x values for the confidence values
+	m,b,r = fit_linear_reg(x,y)						#generates regression line values
+
+	conf_int = t*std_err*np.sqrt(1./n+(linx-x_mean)**2./SSX)		#formula for confidence interval
+	pred_int = t*std_err*np.sqrt(1.+1./n+(linx-x_mean)**2./SSX)		#formula for prediction interval
+	
+	plt.scatter(x,y,c=color, edgecolor='none')			#plot plot plot
+	plt.plot(linx,m*linx+b,color ='r')	
+	plt.plot(linx,m*linx+b+conf_int,color = 'g')
+	plt.plot(linx,m*linx+b-conf_int,color = 'g')
+	plt.plot(linx,m*linx+b+pred_int,color = 'y')
+	plt.plot(linx,m*linx+b-pred_int,color = 'y')
+	plt.xlabel('Scores')
+	plt.ylabel('')
+	#plt.show()
+	#plt.savefig('sleepstudy.pdf')
+	#plt.close()
+	
+plot_conf_intervals(x,y,'blue')	#call plot function
+plot_conf_intervals(xx,yy,'purple')	#call plot function
 plt.show()
