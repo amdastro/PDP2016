@@ -34,7 +34,10 @@ mmath = np.round(mnum*mmathper/100.)
 mwrit = np.round(mnum*mwritper/100.)
 mreaddat = norm(mmean, mstd, size=mnum)
 mreaddat = mreaddat[np.where((mreaddat > 200) & (mreaddat < 800))]
-
+mmathdat = norm(mmean, mstd, size=mnum)
+mmathdat = mmathdat[np.where((mmathdat > 200) & (mmathdat < 800))]
+mwritdat = norm(mmean, mstd, size=mnum)
+mwritdat = mwritdat[np.where((mwritdat > 200) & (mwritdat < 800))]
 
 # Female
 fnum = 903719
@@ -46,6 +49,12 @@ fwritper = np.array([0, 1, 3, 9, 20, 37, 54, 70, 82, 90, 96, 98, 99])
 fread = np.round(fnum*freadper/100.)
 fmath = np.round(fnum*fmathper/100.)
 fwrit = np.round(fnum*fwritper/100.)
+freaddat = norm(fmean, fstd, size=fnum)
+freaddat = mreaddat[np.where((freaddat > 200) & (freaddat < 800))]
+fmathdat = norm(fmean, fstd, size=fnum)
+fmathdat = fmathdat[np.where((fmathdat > 200) & (fmathdat < 800))]
+fwritdat = norm(fmean, fstd, size=fnum)
+fwritdat = fwritdat[np.where((fwritdat > 200) & (fwritdat < 800))]
 
 # Black
 blnum = 219018
@@ -57,6 +66,13 @@ blwritper = np.array([0, 3, 8, 22, 43, 65, 80, 90, 95, 98, 99, 99, 99])
 blread = np.round(blnum*blreadper/100.)
 blmath = np.round(blnum*blmathper/100.)
 blwrit = np.round(blnum*blwritper/100.)
+blreaddat = norm(blmean, blstd, size=blnum)
+blreaddat = mreaddat[np.where((blreaddat > 200) & (blreaddat < 800))]
+blmathdat = norm(blmean, blstd, size=blnum)
+blmathdat = blmathdat[np.where((blmathdat > 200) & (blmathdat < 800))]
+blwritdat = norm(blmean, blstd, size=blnum)
+blwritdat = blwritdat[np.where((blwritdat > 200) & (blwritdat < 800))]
+
 
 # American Indian
 ainnum = 10031
@@ -68,6 +84,12 @@ ainwritper = np.array([0, 1, 3, 12, 27, 47, 65, 80, 90, 95, 99, 99, 99])
 fread = np.round(fnum*freadper/100.)
 fmath = np.round(fnum*fmathper/100.)
 fwrit = np.round(fnum*fwritper/100.)
+ainreaddat = norm(ainmean, ainstd, size=ainnum)
+ainreaddat = mreaddat[np.where((ainreaddat > 200) & (ainreaddat < 800))]
+ainmathdat = norm(ainmean, ainstd, size=ainnum)
+ainmathdat = ainmathdat[np.where((ainmathdat > 200) & (ainmathdat < 800))]
+ainwritdat = norm(ainmean, ainstd, size=ainnum)
+ainwritdat = ainwritdat[np.where((ainwritdat > 200) & (ainwritdat < 800))]
 
 
 # Asian
@@ -80,6 +102,13 @@ aswritper = np.array([0, 1, 3, 7, 15, 27, 41, 54, 67, 79, 89, 95, 99])
 asread = np.round(asnum*asreadper/100.)
 asmath = np.round(asnum*asmathper/100.)
 aswrit = np.round(asnum*aswritper/100.)
+asreaddat = norm(asmean, asstd, size=asnum)
+asreaddat = mreaddat[np.where((asreaddat > 200) & (asreaddat < 800))]
+asmathdat = norm(asmean, asstd, size=asnum)
+asmathdat = asmathdat[np.where((asmathdat > 200) & (asmathdat < 800))]
+aswritdat = norm(asmean, asstd, size=asnum)
+aswritdat = aswritdat[np.where((aswritdat > 200) & (aswritdat < 800))]
+
 
 # Mexican
 mexnum = 130026
@@ -91,6 +120,12 @@ mexwritper = np.array([0, 1, 5, 14, 33, 56, 76, 87, 94, 98, 99, 99, 99])
 mexread = np.round(mexnum*mexreadper/100.)
 mexmath = np.round(mexnum*mexmathper/100.)
 mexwrit = np.round(mexnum*mexwritper/100.)
+mexreaddat = norm(mexmean, mexstd, size=mexnum)
+mexreaddat = mreaddat[np.where((mexreaddat > 200) & (mexreaddat < 800))]
+mexmathdat = norm(mexmean, mexstd, size=mexnum)
+mexmathdat = mexmathdat[np.where((mexmathdat > 200) & (mexmathdat < 800))]
+mexwritdat = norm(mexmean, mexstd, size=mexnum)
+mexwritdat = mexwritdat[np.where((mexwritdat > 200) & (mexwritdat < 800))]
 
 # Puerto Rican
 prnum = 30192
@@ -102,6 +137,13 @@ prwritper = np.array([0, 2, 6, 16, 33, 53, 71, 84, 92, 97, 99, 99, 99])
 prread = np.round(prnum*prreadper/100.)
 prmath = np.round(prnum*prmathper/100.)
 prwrit = np.round(prnum*prwritper/100.)
+prreaddat = norm(prmean, prstd, size=prnum)
+prreaddat = mreaddat[np.where((prreaddat > 200) & (prreaddat < 800))]
+prmathdat = norm(prmean, prstd, size=prnum)
+prmathdat = prmathdat[np.where((prmathdat > 200) & (prmathdat < 800))]
+prwritdat = norm(prmean, prstd, size=prnum)
+prwritdat = prwritdat[np.where((prwritdat > 200) & (prwritdat < 800))]
+
 
 # Latin American
 lanum = 162655
@@ -113,6 +155,12 @@ lawritper = np.array([0, 2, 6, 17, 35, 56, 73, 85, 92, 97, 99, 99, 99])
 laread = np.round(lanum*lareadper/100.)
 lamath = np.round(lanum*lamathper/100.)
 lawrit = np.round(lanum*lawritper/100.)
+lareaddat = norm(lamean, lastd, size=lanum)
+lareaddat = mreaddat[np.where((lareaddat > 200) & (lareaddat < 800))]
+lamathdat = norm(lamean, lastd, size=lanum)
+lamathdat = lamathdat[np.where((lamathdat > 200) & (lamathdat < 800))]
+lawritdat = norm(lamean, lastd, size=lanum)
+lawritdat = lawritdat[np.where((lawritdat > 200) & (lawritdat < 800))]
 
 # White
 whnum = 800236
@@ -124,6 +172,12 @@ whwritper = np.array([0, 1, 1, 4, 12, 27, 45, 63, 78, 89, 95, 98, 99])
 whread = np.round(whnum*whreadper/100.)
 whmath = np.round(whnum*whmathper/100.)
 whwrit = np.round(whnum*whwritper/100.)
+whreaddat = norm(whmean, whstd, size=whnum)
+whreaddat = mreaddat[np.where((whreaddat > 200) & (whreaddat < 800))]
+whmathdat = norm(whmean, whstd, size=whnum)
+whmathdat = whmathdat[np.where((whmathdat > 200) & (whmathdat < 800))]
+whwritdat = norm(whmean, whstd, size=whnum)
+whwritdat = whwritdat[np.where((whwritdat > 200) & (whwritdat < 800))]
 
 # Other
 otnum = 65063
@@ -135,6 +189,12 @@ otwritper = np.array([0, 3, 5, 11, 22, 38, 55, 69, 81, 89, 95, 98, 99])
 otread = np.round(otnum*otreadper/100.)
 otmath = np.round(otnum*otmathper/100.)
 otwrit = np.round(otnum*otwritper/100.)
+otreaddat = norm(otmean, otstd, size=otnum)
+otreaddat = mreaddat[np.where((otreaddat > 200) & (otreaddat < 800))]
+otmathdat = norm(otmean, otstd, size=otnum)
+otmathdat = otmathdat[np.where((otmathdat > 200) & (otmathdat < 800))]
+otwritdat = norm(otmean, otstd, size=otnum)
+otwritdat = otwritdat[np.where((otwritdat > 200) & (otwritdat < 800))]
 
 ###############################################################
 # Confidence intervals
@@ -145,9 +205,9 @@ otwrit = np.round(otnum*otwritper/100.)
 z = 1.96
 
 # Here we just calculate the CI for three groups, asian, mexican and white
-whconf = z * whstd/ np.sqrt(whnum)
-mexconf = z * mexstd/ np.sqrt(mexnum)
-asconf = z * asstd/ np.sqrt(asnum)
+whconf = z * whstd / np.sqrt(whnum)
+mexconf = z * mexstd / np.sqrt(mexnum)
+asconf = z * asstd / np.sqrt(asnum)
 
 
 ###############################################################
