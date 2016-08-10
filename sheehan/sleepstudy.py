@@ -48,32 +48,34 @@ def Syx(x,y):
 	return sigma(y)*np.sqrt(1.-r*r)
 
 def plot_conf_intervals(x,y,conf=0.95):
-
-	n = len(y)
 	
-	alpha = 1-conf
+	#plots scatter data and confidence intervals
 
-	df = n-2
+	n = len(y)	#total number of points
+	
+	alpha = 1-conf	#alpha = 1-conf
+
+	df = n-2	#degrees of freedom
 
 	std_err = Syx(x,y)
 	SSX = SSx(x)
 	
 	x_mean = np.mean(x)
 
-	t = stats.t.isf(alpha/2.,n-2)
+	t = stats.t.isf(alpha/2.,n-2)	#students t value for a two tailed test
 
 
-	x_min,y_min,x_max,y_max=np.amin(x),np.amin(y),np.amax(x),np.amax(y)
+	x_min,y_min,x_max,y_max=np.amin(x),np.amin(y),np.amax(x),np.amax(y)	#for graphing boundaries maybe
 
-	linx = np.linspace(x_min,x_max,50)
+	linx = np.linspace(x_min,x_max,50)					#array of x values for the confidence values
 	
-	m,b,r = fit_linear_reg(x,y)
+	m,b,r = fit_linear_reg(x,y)						#generates regression line values
 
-	conf_int = t*std_err*np.sqrt(1./n+(linx-x_mean)**2./SSX)
-	pred_int = t*std_err*np.sqrt(1.+1./n+(linx-x_mean)**2./SSX)
+	conf_int = t*std_err*np.sqrt(1./n+(linx-x_mean)**2./SSX)		#formula for confidence interval
+	pred_int = t*std_err*np.sqrt(1.+1./n+(linx-x_mean)**2./SSX)		#formula for prediction interval
 	
 
-	plt.scatter(x,y, color = 'k',marker ='+')
+	plt.scatter(x,y, color = 'k',marker ='+')				#plot plot plot
 	plt.plot(linx,m*linx+b,color ='r')	
 	plt.plot(linx,m*linx+b+conf_int,color = 'g')
 	plt.plot(linx,m*linx+b-conf_int,color = 'g')
@@ -85,7 +87,7 @@ def plot_conf_intervals(x,y,conf=0.95):
 	plt.savefig('sleepstudy.pdf')
 	plt.close()
 	
-plot_conf_intervals(x,y)
+plot_conf_intervals(x,y)	#call plot function
 		
 	
 
