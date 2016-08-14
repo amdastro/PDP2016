@@ -25,15 +25,24 @@ year,jan,feb,mar,apr,may,jun,jul,aug,sep,oco,nov,dec,JmD,DmN,DJF,MAM,JJA,SON,yr\
 # This returns the slope and y-intercept of the fit
 #A,B = curve_fit(f, year, JmD)[0] 
 
-
-# Sample size
-n = len(year)
-
+JmD = JmD / 100. # Celsuis
 
 # COMMENT ALL THIS
 
-x = year
-y = JmD
+#np.where((y-fit(x) > -0.1) & (y-fit(x) < 0.1))
+jj = [7,  10,  12,  13,  14,  18,  22,  23,  25,  26,  34,  35,  38,
+         39,  40,  41,  43,  45,  46,  47,  48,  50,  51,  52,  54,  56,
+         57,  58,  59,  66,  67,  72,  73,  77,  78,  79,  81,  82,  83,
+         89,  93,  97,  99, 100, 101, 103, 106, 107, 109, 112, 113, 114,
+        116, 119, 120]
+
+x = year[::10]
+y =  JmD[::10]
+
+# Sample size
+n = len(x)
+
+
 
 Sxx = np.sum(x**2) - np.sum(x)**2/n
 Sxy = np.sum(x*y) - np.sum(x)*np.sum(y)/n

@@ -15,13 +15,12 @@ se_b = sd_res/np.sqrt(Sxx)
 se_a = sd_res*np.sqrt(np.sum(x**2)/(n*Sxx))
 
 
-# This is a function
+# This defines a function (a fancy 'lambda function' again)
 # that returns the standard error of the fitted line.
 # It basically takes the sum of squares of the erorr of the slope
 # and the error of the y-intercept. 
-def fit(xx):
-    fit = a + b*xx
-    return fit
+se_fit     = lambda x: sd_res * np.sqrt(  1./n + (x-np.mean(x))**2/Sxx)
+
 
 # This imports a pacakge that gives us cool stats things
 import scipy.stats as stats
